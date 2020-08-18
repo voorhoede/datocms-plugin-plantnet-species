@@ -4,7 +4,7 @@ import plantNames from './plants.json';
 window.DatoCmsPlugin.init((plugin) => {
   plugin.startAutoResizer();
 
-  console.clear();
+  // console.clear();
 
   let initialValue = [];
   try {
@@ -13,7 +13,7 @@ window.DatoCmsPlugin.init((plugin) => {
     console.error('unable to parse initial value', error);
   }
 
-  console.log('initial value:', initialValue);
+  // console.log('initial value:', initialValue);
 
   const container = document.createElement('div');
   const label = document.createElement('label');
@@ -31,6 +31,9 @@ window.DatoCmsPlugin.init((plugin) => {
 
   document.body.appendChild(container);
 
+  /**
+   * @see https://github.com/yairEO/tagify
+   */
   const tagInput = new window.Tagify(input, {
     enforceWhitelist: true,
     whitelist: plantNames,
@@ -48,4 +51,5 @@ window.DatoCmsPlugin.init((plugin) => {
   };
 
   tagInput.on('add', updateField);
+  tagInput.on('remove', updateField);
 });
