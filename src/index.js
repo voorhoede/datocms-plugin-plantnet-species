@@ -6,14 +6,15 @@ window.DatoCmsPlugin.init((plugin) => {
 
   // console.clear();
 
-  let initialValue = [];
+  let initialValue;
   try {
     initialValue = JSON.parse(plugin.getFieldValue(plugin.fieldPath));
   } catch (error) {
     console.error('unable to parse initial value', error);
   }
-
-  // console.log('initial value:', initialValue);
+  if (!initialValue) {
+    initialValue = [];
+  }
 
   const container = document.createElement('div');
   const label = document.createElement('label');
